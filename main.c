@@ -89,14 +89,18 @@ int main(int ac, char **av)
 
   if (my_strcmp(av[1], "-h") == 0)
     return (disp_usage());
-  if (ac <= 1)
+  if (ac <= 1 || av[1] = "-1")
     return (84);
   handler(SIGUSR1);
   handler(SIGUSR2);
   if (ac == 2)
+  {
+    TEST = 1;
     init_map(av[1]);
+  }
   else
   {
+    TEST = 2;
     init_map(av[2]);
     send_msg(my_getnbr(av[1]), HELLO, 0);
   }

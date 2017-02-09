@@ -5,7 +5,7 @@
 ** Login   <tbesson@epitech.net>
 ** 
 ** Started on  Thu Feb  9 10:53:48 2017 Tamsi Besson
-** Last update Thu Feb  9 10:53:49 2017 Tamsi Besson
+** Last update Thu Feb  9 11:44:37 2017 Tamsi Besson
 */
 
 #include "my.h"
@@ -20,8 +20,6 @@ void decoder(int nb_msg, int nb_data, int pid)
     hit(nb_data);
   if (nb_msg == 103)
     missed(nb_data);
-  if (nb_msg == 104)
-    sunk(nb_data);
   if (nb_msg == 105)
     win(nb_data);
 }

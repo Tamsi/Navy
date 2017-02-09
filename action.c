@@ -12,73 +12,71 @@
 
 void hello(int nb_data, int pid)
 {
-        my_putstr("enemy connected\n\n");
-        if (nb_data == 0)
-                send_msg(pid, HELLO, 1);
-        disp_map(0);
+  if (TEST == 1)
+    my_putstr("enemy connected\n\n");
+  else
+    my_putstr("successfully connected\n\n");
+  if (nb_data == 0)
+    send_msg(pid, HELLO, 1);
+  disp_map(0);
   disp_map(1);
   if (nb_data == 1)
-        play(pid);
+    play(pid);
 }
 
 void hit(int nb_data)
 {
-        int x;
-        int y;
-        char *s;
+  int x;
+  int y;
+  char *s;
 
-        x = nb_data / 8;
-        y = nb_data % 8;
-        s[0] = x + 65;
-        s[1] = y + 49;
-        map[1][y][x] = 'x';
-        my_putstr(my_strcat(s, ": "));
-        my_putstr("hit\n");
+  x = nb_data / 8;
+  y = nb_data % 8;
+  s[0] = x + 65;
+  s[1] = y + 49;
+  map[1][y][x] = 'x';
+  my_putstr(s);
+  my_putstr(": hit\n\n");
 }
 
 void missed(int nb_data)
 {
-        int x;
-        int y;
-        char *s;
+  int x;
+  int y;
+  char *s;
 
-        x = nb_data / 8;
-        y = nb_data % 8;
-        s[0] = x + 65;
-        s[1] = y + 49;
-        map[1][y][x] = 'o';
-        my_putstr(my_strcat(s, ": "));
-        my_putstr("missed\n");
-}
-
-void sunk(int nb_data)
-{
-        printf("player connected");
+  x = nb_data / 8;
+  y = nb_data % 8;
+  s[0] = x + 65;
+  s[1] = y + 49;
+  map[1][y][x] = 'o';
+  my_putstr(s);
+  my_putstr(": missed\n\n");
 }
 
 void win(int nb_data)
 {
-        printf("player connected");
+        write (1, "NON\n", 4);
 }
 
 void attack(int nb_data, int pid)
 {
-        int x;
-        int y;
+  int x;
+  int y;
 
-        x = nb_data / 8;
-        y = nb_data % 8;
-        if (map[0][y][x] != '.')
-        {
-                map[0][y][x] = 'x';
-                send_msg(pid, HIT, nb_data);
-        }
-        else
-        {
-                map[0][y][x] = 'o';
-                send_msg(pid, MISSED, nb_data);
-        }
-        disp_map(0);
-        disp_map(1);
-        play(pid);
+  x = nb_data / 8;
+  y = nb_data % 8;
+  if (map[0][y][x] != '.')
+  {
+    map[0][y][x] = 'x';
+    send_msg(pid, HIT, nb_data);
+  }
+  else
+  {
+    map[0][y][x] = 'o';
+    send_msg(pid, MISSED, nb_data);
+  }
+  disp_map(0);
+  disp_map(1);
+  play(pid);
 }

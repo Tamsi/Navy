@@ -19,7 +19,7 @@ void play(int pid)
   {
     if (check_coo(s) == 0)
     {
-      my_putstr("wrong positions\n");
+      my_putstr("wrong position\n");
       play(pid);
     }
     else
@@ -29,13 +29,23 @@ void play(int pid)
 
 void game()
 {
+	int i;
+
+	i = 0;
   my_putstr("my pid: ");
   my_put_nbr(getpid());
   my_putstr("\n");
-  my_putstr("waiting for enemy connexion...\n");
+  if (TEST == 1)
+  	my_putstr("waiting for enemy connexion...\n");
   while (1)
   {
+ 		if (i == 16) 
+ 		{
+ 			i = 0;
+ 			my_putstr("waiting for enemy's attack...\n");
+ 		}
     pause ();
+    i++;
   }
 }
 
@@ -53,7 +63,9 @@ int disp_usage()
   write(1, "USAGE\n", 6);
   write(1, "\t./navy [first_player_pid] navy_positions\n", 42);
   write(1, "\nDESCRIPTION\n", 13);
-  write(1, "\tfirst_player_pid\tonly for the 2nd player. pid of the first player.\n", 69);
-  write(1, "\tnavy_positions\t\tfile representing the positions of the ships.\n", 63);
+  write(1, "\tfirst_player_pid\tonly for the 2nd player.", 43);
+  write(1, " pid of the first player.\n", 26);
+  write(1, "\tnavy_positions\t\t", 17);
+  write(1, "file representing the positions of the ships.\n", 46);
   return (0);
 }

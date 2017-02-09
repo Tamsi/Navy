@@ -26,7 +26,7 @@ void    my_put_nbr(int nb)
     {
       my_putchar('-');
       nb = nb * (- 1);
-      if (nb <= 9 && nb >=0)
+      if (nb <= 9 && nb >= 0)
         my_put_nbr(nb);
     }
   if (nb > 9)

@@ -60,4 +60,5 @@ void missed(int);
 void attack(int, int);
 
 extern char map[2][8][9];
+int TEST;
 #endif //NAVY
