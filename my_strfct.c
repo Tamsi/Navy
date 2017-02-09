@@ -10,18 +10,17 @@
 
 #include "my.h"
 
-char    *my_strcpy(char *dest, char *src)
+int     my_putstr(char *str)
 {
   int   i;
 
   i = 0;
-  while (src[i] != '\0')
+  while (str[i] != '\0')
     {
-      dest[i] = src[i];
+      write(0, &str[i], 1);
       i = i + 1;
     }
-  dest[i] = '\0';
-  return (dest);
+  return (0);
 }
 
 char    *my_strcat(char *dest, char *src)

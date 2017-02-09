@@ -8,7 +8,26 @@
 ** Last update Thu Feb  2 14:40:18 2017 Tamsi Besson
 */
 
-#include <stdio.h>
+#include "my.h"
+
+char    *my_revstr(char *str)
+{
+  int   i;
+  int   j;
+  char  letter;
+
+  i = 0;
+  j = my_strlen(str) - 1;
+  while (i < j)
+    {
+      letter = str[i];
+      str[i] = str[j];
+      str[j] = letter;
+      i = i + 1;
+      j = j - 1;
+    }
+  return (str);
+}
 
 char    *my_putnbr_base(int nbr, char *base_to)
 {

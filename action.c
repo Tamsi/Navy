@@ -12,69 +12,73 @@
 
 void hello(int nb_data, int pid)
 {
-	printf("enemy connected\n\n");
-	if (nb_data == 0)
-		send_msg(pid, HELLO, 1);
-	disp_map(0);
+        my_putstr("enemy connected\n\n");
+        if (nb_data == 0)
+                send_msg(pid, HELLO, 1);
+        disp_map(0);
   disp_map(1);
-  printf("%i\n", nb_data);
   if (nb_data == 1)
-  {
-  	play(pid);
-  }
+        play(pid);
 }
 
 void hit(int nb_data)
 {
-	int x;
-	int y;
+        int x;
+        int y;
+        char *s;
 
-	x = nb_data / 8;
-	y = nb_data % 8;
-	map[1][y][x] = 'x';
-	printf("hit\n");
+        x = nb_data / 8;
+        y = nb_data % 8;
+        s[0] = x + 65;
+        s[1] = y + 49;
+        map[1][y][x] = 'x';
+        my_putstr(my_strcat(s, ": "));
+        my_putstr("hit\n");
 }
 
 void missed(int nb_data)
 {
-	int x;
-	int y;
+        int x;
+        int y;
+        char *s;
 
-	x = nb_data / 8;
-	y = nb_data % 8;
-	map[1][y][x] = 'o';
-	printf("missed\n");
+        x = nb_data / 8;
+        y = nb_data % 8;
+        s[0] = x + 65;
+        s[1] = y + 49;
+        map[1][y][x] = 'o';
+        my_putstr(my_strcat(s, ": "));
+        my_putstr("missed\n");
 }
 
 void sunk(int nb_data)
 {
-	printf("player connected");
+        printf("player connected");
 }
 
 void win(int nb_data)
 {
-	printf("player connected");
+        printf("player connected");
 }
 
 void attack(int nb_data, int pid)
 {
-	int x;
-	int y;
+        int x;
+        int y;
 
-	x = nb_data / 8;
-	y = nb_data % 8;
-	if (map[0][y][x] != '.')
-	{
-		map[0][y][x] = 'x';
-		send_msg(pid, HIT, nb_data);
-	}
-	else
-	{
-		map[0][y][x] = 'o';
-		printf("lissed\n");
-		send_msg(pid, MISSED, nb_data);
-	}
-	disp_map(0);
-	disp_map(1);
-	play(pid);
+        x = nb_data / 8;
+        y = nb_data % 8;
+        if (map[0][y][x] != '.')
+        {
+                map[0][y][x] = 'x';
+                send_msg(pid, HIT, nb_data);
+        }
+        else
+        {
+                map[0][y][x] = 'o';
+                send_msg(pid, MISSED, nb_data);
+        }
+        disp_map(0);
+        disp_map(1);
+        play(pid);
 }
