@@ -87,20 +87,22 @@ int main(int ac, char **av)
 {
   char *s;
 
+  if (ac == 1)
+    return (0);
   if (my_strcmp(av[1], "-h") == 0)
     return (disp_usage());
-  if (ac <= 1 || av[1] = "-1")
+  if (ac <= 1 || av[1] == "-1")
     return (84);
   handler(SIGUSR1);
   handler(SIGUSR2);
   if (ac == 2)
   {
-    TEST = 1;
+    SERV_CLIENT = 1;
     init_map(av[1]);
   }
-  else
+  else if (ac == 3)
   {
-    TEST = 2;
+    SERV_CLIENT = 2;
     init_map(av[2]);
     send_msg(my_getnbr(av[1]), HELLO, 0);
   }

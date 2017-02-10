@@ -9,7 +9,7 @@
 */
 
 #define READ_SIZE 1
-#include "my.h"
+#include "../my.h"
 
 char    *my_realloc(char *str)
 {

@@ -8,7 +8,7 @@
 ** Last update Thu Feb  2 14:40:18 2017 Tamsi Besson
 */
 
-#include "my.h"
+#include "../my.h"
 
 char    *my_revstr(char *str)
 {

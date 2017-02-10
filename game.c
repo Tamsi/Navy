@@ -29,21 +29,21 @@ void play(int pid)
 
 void game()
 {
-	int i;
+  int i;
 
-	i = 0;
+  i = 0;
   my_putstr("my pid: ");
   my_put_nbr(getpid());
   my_putstr("\n");
-  if (TEST == 1)
-  	my_putstr("waiting for enemy connexion...\n");
+  if (SERV_CLIENT == 1)
+        my_putstr("waiting for enemy connexion...\n");
   while (1)
   {
- 		if (i == 16) 
- 		{
- 			i = 0;
- 			my_putstr("waiting for enemy's attack...\n");
- 		}
+    if (i > 16 && ATK_CHECKER != 0)
+    {
+      i = 0;
+      my_putstr("waiting for enemy's attack...\n");
+    }
     pause ();
     i++;
   }

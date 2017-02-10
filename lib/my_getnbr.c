@@ -1,4 +1,4 @@
-#include "my.h"
+#include "../my.h"
 
 long    my_getnbr_getsign(char *str)
 {

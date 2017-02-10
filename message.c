@@ -17,9 +17,9 @@ void decoder(int nb_msg, int nb_data, int pid)
   if (nb_msg == 101)
     attack(nb_data, pid);
   if (nb_msg == 102)
-    hit(nb_data);
+    hit(nb_data, 0);
   if (nb_msg == 103)
-    missed(nb_data);
+    missed(nb_data, 0);
   if (nb_msg == 105)
     win(nb_data);
 }
@@ -32,6 +32,7 @@ void send_msg(int pid, int msg, int data)
   int signum;
 
   i = 0;
+  ATK_CHECKER = 0;
   bit_msg = get_bytestr(msg);
   usleep(8000);
   while (bit_msg[i] != '\0')

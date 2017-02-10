@@ -8,7 +8,7 @@
 ** Last update Fri Feb  3 13:43:26 2017 Tamsi Besson
 */
 
-#include "my.h"
+#include "../my.h"
 
 int word_count(char *str, char c)
 {

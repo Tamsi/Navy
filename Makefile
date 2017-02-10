@@ -13,12 +13,12 @@ SRC=   	 	main.c \
 		game.c \
 		message.c \
 		action.c \
-		my_getnbr.c \
-		my_put_nbr.c \
-		my_putnbr_base.c \
-		get_next_line.c \
-		my_str_to_wordtab.c \
-		my_strfct.c \
+		lib/my_getnbr.c \
+		lib/my_put_nbr.c \
+		lib/my_putnbr_base.c \
+		lib/get_next_line.c \
+		lib/my_str_to_wordtab.c \
+		lib/my_strfct.c \
 
 NAME	=	navy
 

@@ -8,7 +8,7 @@
 ** Last update Tue Feb  7 15:45:54 2017 Tamsi Besson
 */
 
-#include "my.h"
+#include "../my.h"
 
 void my_putchar(char c)
 {

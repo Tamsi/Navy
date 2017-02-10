@@ -12,19 +12,20 @@
 
 void hello(int nb_data, int pid)
 {
-  if (TEST == 1)
+  if (SERV_CLIENT == 1)
     my_putstr("enemy connected\n\n");
   else
     my_putstr("successfully connected\n\n");
-  if (nb_data == 0)
-    send_msg(pid, HELLO, 1);
   disp_map(0);
   disp_map(1);
+  if (nb_data == 0)
+    send_msg(pid, HELLO, 1);
   if (nb_data == 1)
     play(pid);
+  ATK_CHECKER = 0;
 }
 
-void hit(int nb_data)
+void hit(int nb_data, int c)
 {
   int x;
   int y;
@@ -34,12 +35,19 @@ void hit(int nb_data)
   y = nb_data % 8;
   s[0] = x + 65;
   s[1] = y + 49;
-  map[1][y][x] = 'x';
+  s[2] = '\0';
   my_putstr(s);
   my_putstr(": hit\n\n");
+  if (c == 0)
+  {
+    map[1][y][x] = 'o';
+    disp_map(0);
+    disp_map(1);
+  }
+  ATK_CHECKER = 1;
 }
 
-void missed(int nb_data)
+void missed(int nb_data, int c)
 {
   int x;
   int y;
@@ -49,14 +57,21 @@ void missed(int nb_data)
   y = nb_data % 8;
   s[0] = x + 65;
   s[1] = y + 49;
-  map[1][y][x] = 'o';
+  s[2] = '\0';
   my_putstr(s);
   my_putstr(": missed\n\n");
+  if (c == 0)
+  {
+    map[1][y][x] = 'o';
+    disp_map(0);
+    disp_map(1);
+  }
+  ATK_CHECKER = 1;
 }
 
 void win(int nb_data)
 {
-        write (1, "NON\n", 4);
+  write (1, "NON\n", 4);
 }
 
 void attack(int nb_data, int pid)
@@ -70,11 +85,13 @@ void attack(int nb_data, int pid)
   {
     map[0][y][x] = 'x';
     send_msg(pid, HIT, nb_data);
+    hit(nb_data, 1);
   }
   else
   {
     map[0][y][x] = 'o';
     send_msg(pid, MISSED, nb_data);
+    missed(nb_data, 1);
   }
   disp_map(0);
   disp_map(1);

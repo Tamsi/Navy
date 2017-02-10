@@ -8,7 +8,7 @@
 ** Last update Fri Feb  3 13:44:25 2017 Tamsi Besson
 */
 
-#include "my.h"
+#include "../my.h"
 
 int     my_putstr(char *str)
 {

@@ -53,12 +53,13 @@ void receiver(int, siginfo_t *, void *);
 void play(int);
 void game();
 void hello(int, int);
-void hit(int);
+void hit(int, int);
 void sunk(int);
 void win(int);
-void missed(int);
+void missed(int, int);
 void attack(int, int);
 
 extern char map[2][8][9];
-int TEST;
+int SERV_CLIENT;
+int ATK_CHECKER;
 #endif //NAVY
