@@ -46,9 +46,9 @@ int check_coo(char *s)
 {
   if (s[0] >= 'a' && s[0] <= 'h')
     s[0] = s[0] - 32;
-  if (s[0] < 'A' && s[0] > 'H')
+  if (s[0] < 'A' || s[0] > 'H')
     return (0);
-  if (s[1] < '1' && s[1] > '8')
+  if (s[1] < '1' || s[1] > '8')
     return (0);
   if (map[1][s[1] - 49][s[0] - 65] != '.')
     return (0);

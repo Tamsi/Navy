@@ -36,7 +36,7 @@ void game()
   my_put_nbr(getpid());
   my_putstr("\n");
   if (SERV_CLIENT == 1)
-        my_putstr("waiting for enemy connexion...\n");
+    my_putstr("waiting for enemy connexion...\n");
   while (1)
   {
     if (i > 16 && ATK_CHECKER != 0)

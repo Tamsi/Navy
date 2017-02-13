@@ -25,7 +25,7 @@ NAME	=	navy
 OBJ=            $(SRC:.c=.o)
 
 $(NAME):        $(OBJ)
-		gcc -o $(NAME) $(OBJ)
+		gcc -g -o $(NAME) $(OBJ)
 
 
 all:            $(NAME)

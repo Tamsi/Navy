@@ -19,9 +19,12 @@ void hello(int nb_data, int pid)
   disp_map(0);
   disp_map(1);
   if (nb_data == 0)
+  {
     send_msg(pid, HELLO, 1);
-  if (nb_data == 1)
     play(pid);
+  }
+  else
+    my_putstr("waiting for enemy's attack...\n");
   ATK_CHECKER = 0;
 }
 
@@ -29,7 +32,7 @@ void hit(int nb_data, int c)
 {
   int x;
   int y;
-  char *s;
+  char s[2];
 
   x = nb_data / 8;
   y = nb_data % 8;
@@ -40,7 +43,7 @@ void hit(int nb_data, int c)
   my_putstr(": hit\n\n");
   if (c == 0)
   {
-    map[1][y][x] = 'o';
+    map[1][y][x] = 'x';
     disp_map(0);
     disp_map(1);
   }
@@ -51,7 +54,7 @@ void missed(int nb_data, int c)
 {
   int x;
   int y;
-  char *s;
+  char s[2];
 
   x = nb_data / 8;
   y = nb_data % 8;
