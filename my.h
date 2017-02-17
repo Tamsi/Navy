@@ -60,6 +60,7 @@ void missed(int, int);
 void attack(int, int);
 
 extern char map[2][8][9];
+static int DISPLAYER;
 int SERV_CLIENT;
 int ATK_CHECKER;
 #endif //NAVY

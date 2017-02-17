@@ -42,12 +42,14 @@ void hit(int nb_data, int c)
   my_putstr(s);
   my_putstr(": hit\n\n");
   if (c == 0)
-  {
     map[1][y][x] = 'x';
+  if (DISPLAYER % 2 != 0)
+  {
     disp_map(0);
     disp_map(1);
   }
   ATK_CHECKER = 1;
+  DISPLAYER++;
 }
 
 void missed(int nb_data, int c)
@@ -64,12 +66,14 @@ void missed(int nb_data, int c)
   my_putstr(s);
   my_putstr(": missed\n\n");
   if (c == 0)
-  {
     map[1][y][x] = 'o';
+  if (DISPLAYER % 2 != 0)
+  {
     disp_map(0);
     disp_map(1);
   }
   ATK_CHECKER = 1;
+  DISPLAYER++;
 }
 
 void win(int nb_data)
@@ -96,7 +100,5 @@ void attack(int nb_data, int pid)
     send_msg(pid, MISSED, nb_data);
     missed(nb_data, 1);
   }
-  disp_map(0);
-  disp_map(1);
   play(pid);
 }

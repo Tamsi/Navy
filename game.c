@@ -13,6 +13,7 @@
 void play(int pid)
 {
   char *s;
+
   my_putstr("attack:\t");
   s = get_next_line(0);
   if (s != NULL)
@@ -25,6 +26,8 @@ void play(int pid)
     else
       send_msg(pid, ATTACK, coo_to_nb(s));
   }
+  else
+    exit (1);
 }
 
 void game()
@@ -36,7 +39,7 @@ void game()
   my_put_nbr(getpid());
   my_putstr("\n");
   if (SERV_CLIENT == 1)
-    my_putstr("waiting for enemy connexion...\n");
+    my_putstr("waiting for enemy connection...\n");
   while (1)
   {
     if (i > 16 && ATK_CHECKER != 0)

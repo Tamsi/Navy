@@ -28,6 +28,26 @@ int check_error(char **pos_tab, int posA[], int posB[])
   return (0);
 }
 
+void set_map(int posA[], int posB[], char **pos_tab)
+{
+  int i;
+
+  i = posA[1];
+  if (posA[0] == posB[0])
+    while (i <= posB[1])
+    {
+      map[0][i][posA[0]] = pos_tab[0][0];
+      i++;
+    }
+  i = posA[0];
+  if (posA[1] == posB[1])
+    while (i <= posB[0])
+    {
+      map[0][posA[1]][i] = pos_tab[0][0];
+      i++;
+    }
+}
+
 int init_map(char *str)
 {
   char *s;
@@ -48,12 +68,7 @@ int init_map(char *str)
     posB[1] = pos_tab[2][1] - 49;
     if (check_error(pos_tab, posA, posB) != 0)
       return (84);
-    if (posA[0] == posB[0])
-      for (int i = posA[1]; i <= posB[1]; i++)
-        map[0][i][posA[0]] = pos_tab[0][0];
-    if (posA[1] == posB[1])
-      for (int i = posA[0]; i <= posB[0]; i++)
-        map[0][posA[1]][i] = pos_tab[0][0];
+    set_map(posA, posB, pos_tab);
   }
   return (0);
 }
@@ -62,26 +77,26 @@ void disp_map(int id)
 {
   int i;
   int j;
-  int y;
+
   if (id == 0)
-    printf("my positions:\n");
+    my_putstr("my positions:\n");
   else
-    printf("enemy's positions:\n");
-  printf(" |A B C D E F G H\n");
-  printf("-+---------------\n");
+    my_putstr("enemy's positions:\n");
+  my_putstr(" |A B C D E F G H\n");
+  my_putstr("-+---------------\n");
   i = 0;
-  y = 1;
   while (i < 8)
   {
     j = 0;
-    printf("%i|", y);
+    my_put_nbr(i + 1);
+    my_putstr("|");
     while (map[id][i][j])
     {
-      printf("%c ", map[id][i][j]);
+      write (1, &map[id][i][j], 1);
+      write (1, " ", 1);
       j++;
     }
-    printf("\n");
-    y++;
+    my_putstr("\n");
     i++;
   }
   my_putstr("\n");
